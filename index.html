@@ -478,6 +478,50 @@
     .foot-logo span { color: var(--purple); }
     .foot-right { color: #9999bb; font-size: 0.96rem; letter-spacing: 0.06em; text-transform: uppercase; }
 
+    /* ── INMOBILIARIAS ── */
+    .inmo-all-feats { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; justify-content: center; margin: 1.6rem 0 2.8rem; }
+    .inmo-all-feat { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--muted); }
+    .inmo-all-feat::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--purple); flex-shrink: 0; }
+    .inmo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; align-items: stretch; }
+    @media (max-width: 900px) { .inmo-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; } }
+    @media (max-width: 768px) {
+      #inmobiliarias .section-label,
+      #inmobiliarias .section-title,
+      #inmobiliarias .section-sub,
+      #inmobiliarias .inmo-all-feats { text-align: center; justify-content: center; }
+      #inmobiliarias .inmo-plan-name,
+      #inmobiliarias .inmo-price,
+      #inmobiliarias .inmo-feats,
+      #inmobiliarias .inmo-upgrade,
+      #inmobiliarias .inmo-note { text-align: center; }
+      #inmobiliarias .inmo-feats li { justify-content: center; }
+      #inmobiliarias .inmo-badge { align-self: center; }
+    }
+    .inmo-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      padding: 2rem 1.8rem; display: flex; flex-direction: column; gap: 0; position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    div.inmo-card:hover { border-color: rgba(108,99,255,0.4); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(108,99,255,0.1); }
+    .inmo-card.featured { border-color: rgba(108,99,255,0.45); box-shadow: 0 0 0 1px rgba(108,99,255,0.2); }
+    .inmo-badge { display: inline-block; align-self: flex-start; background: linear-gradient(90deg,var(--purple),var(--cyan)); color: #fff; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.9rem; border-radius: 20px; white-space: nowrap; font-family: 'Space Grotesk',sans-serif; margin-bottom: 0.8rem; }
+    .inmo-top-line { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg,var(--purple),var(--cyan)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+    div.inmo-card:hover .inmo-top-line { transform: scaleX(1); }
+    .inmo-plan-name { font-family: 'Space Grotesk',sans-serif; font-size: 1.1rem; font-weight: 600; color: #ccc; margin-bottom: 0.5rem; }
+    .inmo-price { font-family: 'Space Grotesk',sans-serif; font-size: 1.7rem; font-weight: 700; color: #fff; letter-spacing: -0.03em; margin-bottom: 0.2rem; }
+    .inmo-price small { font-size: 0.78rem; color: var(--muted); font-weight: 400; letter-spacing: 0; }
+    .inmo-divider { height: 1px; background: rgba(255,255,255,0.05); margin: 1.2rem 0; }
+    .inmo-feats { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.6rem; flex: 1; }
+    .inmo-feats li { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.83rem; color: var(--muted); line-height: 1.4; }
+    .inmo-feats li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--purple); flex-shrink: 0; margin-top: 0.45rem; }
+    .inmo-feats li.inmo-no { color: #333355; }
+    .inmo-feats li.inmo-no::before { background: #333355; }
+    .inmo-upgrade { background: rgba(108,99,255,0.07); border: 1px solid rgba(108,99,255,0.18); border-radius: 10px; padding: 1rem 1.2rem; margin-top: 2.5rem; text-align: center; }
+    .inmo-upgrade p { font-size: 0.84rem; color: #aaaacc; line-height: 1.6; }
+    .inmo-upgrade strong { color: var(--purple); }
+    .inmo-note { text-align: center; margin-top: 1.4rem; font-size: 0.82rem; color: var(--muted); }
+    .inmo-note a { color: var(--purple); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
     /* ── SCROLL INDICATOR (hero) ── */
     .scroll-indicator {
       position: absolute;
@@ -573,6 +617,7 @@
   <a class="logo" onclick="smoothNav('hero')">NEBURAX <span>STUDIO</span></a>
   <ul class="nav-links">
     <li><a onclick="smoothNav('servicios')">Servicios</a></li>
+    <li><a onclick="smoothNav('inmobiliarias')">Inmobiliarias</a></li>
     <li><a onclick="smoothNav('portfolio')">Portafolio</a></li>
     <li><a onclick="smoothNav('proceso')">Cómo trabajo</a></li>
     <li><a class="nav-contact" onclick="smoothNav('contacto')">Contacto</a></li>
@@ -596,6 +641,7 @@
 <!-- Menú mobile -->
 <div class="mobile-menu" id="mobile-menu">
   <a onclick="mobileNav('servicios', this)">Servicios</a>
+  <a onclick="mobileNav('inmobiliarias', this)">Inmobiliarias</a>
   <a onclick="mobileNav('portfolio', this)">Portafolio</a>
   <a onclick="mobileNav('proceso', this)">Cómo trabajo</a>
   <a class="mobile-menu-contact" onclick="mobileNav('contacto', this)">Contacto</a>
@@ -667,7 +713,7 @@
         <li>Galería de trabajos y servicios</li>
         <li>Optimizada para celular</li>
       </ul>
-      <div class="svc-price">Desde USD 150 <small>+ USD 40/mes (hosting y soporte)</small></div>
+      <div class="svc-price">Desde USD 150 <small>+ USD 30/mes (hosting y soporte)</small></div>
       <button class="btn-card" onclick="smoothNav('contacto')">Quiero esta opción →</button>
     </div>
     <div class="svc-card float-up d2">
@@ -686,6 +732,98 @@
       <button class="btn-card" onclick="smoothNav('contacto')">Consultá sin compromiso →</button>
     </div>
   </div>
+</div>
+
+<div class="div-line"></div>
+
+<!-- INMOBILIARIAS -->
+<div class="section" id="inmobiliarias">
+  <div class="float-up">
+    <div class="section-label">Inmobiliarias</div>
+    <div class="section-title">La web que tu inmobiliaria merece</div>
+    <p class="section-sub">Tres opciones según las necesidades de tu negocio.</p>
+    <div class="inmo-all-feats">
+      <span class="inmo-all-feat">Panel admin propio</span>
+      <span class="inmo-all-feat">Mapa en cada propiedad</span>
+      <span class="inmo-all-feat">Ficha de propiedad</span>
+      <span class="inmo-all-feat">100% responsive</span>
+      <span class="inmo-all-feat">Estados de propiedad</span>
+      <span class="inmo-all-feat">Demo en 48hs</span>
+    </div>
+  </div>
+  <div class="inmo-grid">
+
+    <!-- TEMPLATE -->
+    <div class="inmo-card float-up d1">
+      <div class="inmo-top-line"></div>
+      <div class="inmo-plan-name">Template</div>
+      <div class="inmo-price">USD 180 <small>+ USD 30/mes</small></div>
+      <div class="inmo-divider"></div>
+      <ul class="inmo-feats">
+        <li>Hasta 70 propiedades</li>
+        <li>1 usuario</li>
+        <li>4 secciones</li>
+        <li>Plantilla base con logo y colores</li>
+        <li>Filtros básicos</li>
+        <li>Hasta 15 fotos por propiedad</li>
+        <li>Formulario de contacto</li>
+        <li class="inmo-no">Sin migración de propiedades</li>
+        <li class="inmo-no">Con marca Powered by Neburax</li>
+      </ul>
+      <button class="btn-card" onclick="smoothNav('contacto')">Empezar con Template →</button>
+    </div>
+
+    <!-- STARTER -->
+    <div class="inmo-card featured float-up d2">
+      <div class="inmo-top-line"></div>
+      <div class="inmo-badge">Más elegido</div>
+      <div class="inmo-plan-name">Starter</div>
+      <div class="inmo-price">USD 500 <small>+ USD 40/mes</small></div>
+      <div class="inmo-divider"></div>
+      <ul class="inmo-feats">
+        <li>Hasta 200 propiedades</li>
+        <li>1 usuario</li>
+        <li>5 secciones</li>
+        <li>Diseño personalizado</li>
+        <li>Más filtros de búsqueda</li>
+        <li>Hasta 20 fotos por propiedad</li>
+        <li>WhatsApp con mensajes predefinidos</li>
+        <li>Migración hasta 200 propiedades</li>
+        <li>Blog básico</li>
+        <li class="inmo-no">Sin estadísticas ni destacados</li>
+      </ul>
+      <button class="btn-card" onclick="smoothNav('contacto')">Empezar con Starter →</button>
+    </div>
+
+    <!-- PRO -->
+    <div class="inmo-card float-up d3">
+      <div class="inmo-top-line"></div>
+      <div class="inmo-plan-name">Pro</div>
+      <div class="inmo-price">USD 700 <small>+ USD 60/mes</small></div>
+      <div class="inmo-divider"></div>
+      <ul class="inmo-feats">
+        <li>Hasta 400 propiedades</li>
+        <li>2 usuarios</li>
+        <li>8 secciones</li>
+        <li>Diseño personalizado</li>
+        <li>Todos los filtros combinables</li>
+        <li>Fotos ilimitadas por propiedad</li>
+        <li>WhatsApp personalizado por propiedad y agente</li>
+        <li>Migración hasta 400 propiedades</li>
+        <li>Propiedades destacadas y estadísticas</li>
+        <li>Blog</li>
+        <li>Emprendimientos</li>
+        <li>Landing page por propiedad</li>
+      </ul>
+      <button class="btn-card" onclick="smoothNav('contacto')">Empezar con Pro →</button>
+    </div>
+
+  </div>
+
+  <div class="inmo-upgrade float-up">
+    <p>¿Empezás con <strong>Template</strong> y después querés crecer? Podés hacer upgrade al <strong>Plan Starter</strong>.<br>Lo que ya pagaste cuenta.</p>
+  </div>
+  <p class="inmo-note float-up">¿A tu plan le querés agregar algo en particular? <a onclick="smoothNav('contacto')">Escribinos</a> y lo cotizamos sin compromiso.</p>
 </div>
 
 <div class="div-line"></div>
